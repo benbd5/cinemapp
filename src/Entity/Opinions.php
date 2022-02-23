@@ -33,7 +33,7 @@ class Opinions
     private $publication_date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="opinion")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="opinion")
      */
     private $users;
 
@@ -41,6 +41,11 @@ class Opinions
      * @ORM\ManyToOne(targetEntity=Movies::class, inversedBy="opinion")
      */
     private $movies;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="opinion")
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -83,12 +88,12 @@ class Opinions
         return $this;
     }
 
-    public function getUsers(): ?Users
+    public function getUsers(): ?User
     {
         return $this->users;
     }
 
-    public function setUsers(?Users $users): self
+    public function setUsers(?User $users): self
     {
         $this->users = $users;
 
@@ -103,6 +108,18 @@ class Opinions
     public function setMovies(?Movies $movies): self
     {
         $this->movies = $movies;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
