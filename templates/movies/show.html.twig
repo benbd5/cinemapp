@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <th>Duration</th>
-                <td>{{ movie.duration }}</td>
+                <td>{{ movie.duration }}h</td>
             </tr>
             <tr>
                 <th>Picture</th>
@@ -37,6 +37,14 @@
                 <th>Acteurs</th>
                 <td>
                     {% for movie in movie.getActors() %}
+                        {{ movie.name }}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>
+                    {% for movie in movie.getCategory() %}
                         {{ movie.name }}
                     {% endfor %}
                 </td>

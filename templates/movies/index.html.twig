@@ -24,7 +24,7 @@
                 <td>{{ movie.name }}</td>
                 <td>{{ movie.releaseDate ? movie.releaseDate|date('Y-m-d') : '' }}</td>
                 <td>{{ movie.synopsis }}</td>
-                <td>{{ movie.duration }}</td>
+                <td>{{ movie.duration }}h</td>
                 <td>{{ movie.picture }}</td>
                 <td>
                     <a href="{{ path('app_movies_show', {'id': movie.id}) }}">show</a>
