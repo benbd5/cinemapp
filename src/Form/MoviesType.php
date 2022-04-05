@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Movies;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -16,7 +17,12 @@ class MoviesType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('releaseDate')
+            ->add('releaseDate',DateType::Class, array(
+                'widget' => 'choice',
+                'years' => range(date('Y'), date('Y')-100),
+                'months' => range(1, 12),
+                'days' => range(1, 31),
+            ))
             ->add('synopsis')
             ->add('duration')
             ->add('picture', FileType::class, [
