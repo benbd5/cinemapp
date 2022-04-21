@@ -5,33 +5,25 @@
 {% block body %}
     <h1>Actors index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Role</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row g-2">
         {% for actor in actors %}
-            <tr>
-                <td>{{ actor.id }}</td>
-                <td>{{ actor.name }}</td>
-                <td>{{ actor.role }}</td>
-                <td>
-                    <a href="{{ path('app_actors_show', {'id': actor.id}) }}">show</a>
-                    <a href="{{ path('app_actors_edit', {'id': actor.id}) }}">edit</a>
-                </td>
-            </tr>
+            <div class="col-m" style="max-width: 200px">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ actor.name }}</h5>
+                        <p class="card-text">{{ actor.role }}h</p>
+                        <a href="{{ path('app_actors_show', {'id': actor.id}) }}">Détails</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_actors_edit', {'id': actor.id}) }}">Modifier</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+            <div>
+                <p>no records found</p>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
 
     <a href="{{ path('app_actors_new') }}">Create new</a>
 {% endblock %}

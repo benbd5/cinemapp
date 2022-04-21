@@ -3,41 +3,33 @@
 {% block title %}Movies index{% endblock %}
 
 {% block body %}
-    <h1>Movies index</h1>
+    <h1>Tous les films</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>ReleaseDate</th>
-                <th>Synopsis</th>
-                <th>Duration</th>
-                <th>Picture</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row g-2">
         {% for movie in movies %}
-            <tr>
-                <td>{{ movie.id }}</td>
-                <td>{{ movie.name }}</td>
-                <td>{{ movie.releaseDate ? movie.releaseDate|date('Y-m-d') : '' }}</td>
-                <td>{{ movie.synopsis }}</td>
-                <td>{{ movie.duration }}h</td>
-                <td>{{ movie.picture }}</td>
-                <td>
-                    <a href="{{ path('app_movies_show', {'id': movie.id}) }}">show</a>
-                    <a href="{{ path('app_movies_edit', {'id': movie.id}) }}">edit</a>
-                </td>
-            </tr>
+                <div class="col-m" style="max-width: 200px">
+                    <div class="card">
+                        <img src="{{ asset(image_dir ~ movie.picture) }}" class="card-img-top" alt="image de {{ movie.name }}" style="height: 200px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie.name }}</h5>
+                            <h5 class="card-text">{{ movie.releaseDate ? movie.releaseDate|date('Y-m-d') : '' }}</h5>
+                            <p class="card-text">{{ movie.synopsis }}</p>
+                            <p class="card-text">{{ movie.duration }}h</p>
+                            <p class="card-text">{{ movie.duration }}h</p>
+                            <a href="{{ path('app_movies_show', {'id': movie.id}) }}">Détails</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('app_movies_edit', {'id': movie.id}) }}">Modifier</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
         {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
+            <div>
+                <p>no records found</p>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
+
 
     <a href="{{ path('app_movies_new') }}">Create new</a>
 {% endblock %}
