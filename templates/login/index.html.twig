@@ -1,24 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page d'authentification{% endblock %}
+{% block title %}Page d'authentification
+{% endblock %}
 
 {% block body %}
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+	{% if error %}
+		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+	<div class="row d-flex justify-content-center">
+		<h1 class="row d-flex justify-content-center mt-5">Connexion</h1>
+		<form action="{{ path('login') }}" method="post" class="form-connexion">
+			<label for="email" class="form-label">Email:</label>
+			<input type="text" id="email" name="_username" value="{{ last_email }}" class="form-control"/>
 
-    <form action="{{ path('login') }}" method="post">
-        <label for="email" class="form-label">Email:</label>
-        <input type="text" id="email" name="_username" value="{{ last_email }}" class="form-control" />
+			<label for="password" class="form-label">Password:</label>
+			<input
+			type="password" id="password" name="_password" class="form-control"/>
 
-        <label for="password" class="form-label">Password:</label>
-        <input type="password" id="password" name="_password" class="form-control" />
+			{#        <input type="hidden" name="_target_path" value="{{ path('home') }}"/>#}
 
-{#        <input type="hidden" name="_target_path" value="{{ path('home') }}"/>#}
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-
-        <button type="submit" class="btn btn-primary mt-3">Login</button>
-    </form>
-
+			<button type="submit" class="btn color-btn mt-3">Login</button>
+		</form>
+	</div>
 {% endblock %}
