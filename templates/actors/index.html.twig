@@ -1,29 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actors index{% endblock %}
+{% block title %}Actors index
+{% endblock %}
 
 {% block body %}
-    <h1>Actors index</h1>
+	<h1 class="row d-flex justify-content-center mt-5">Les acteurs</h1>
 
-    <div class="row g-2">
-        {% for actor in actors %}
-            <div class="col-m" style="max-width: 200px">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ actor.name }}</h5>
-                        <p class="card-text">{{ actor.role }}h</p>
-                        <a href="{{ path('app_actors_show', {'id': actor.id}) }}">Détails</a>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('app_actors_edit', {'id': actor.id}) }}">Modifier</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        {% else %}
-            <div>
-                <p>no records found</p>
-            </div>
-        {% endfor %}
+	{% for actor in actors %}
+		<div class="col-m" style="max-width: 200px">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">{{ actor.name }}</h5>
+					<p class="card-text">{{ actor.role }}h</p>
+					<a href="{{ path('app_actors_show', {'id': actor.id}) }}">Détails</a>
+					{% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('app_actors_edit', {'id': actor.id}) }}">Modifier</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<div>
+			<p>no records found</p>
+		</div>
+	{% endfor %}
 
-    <a href="{{ path('app_actors_new') }}">Create new</a>
+	<a href="{{ path('app_actors_new') }}" class="color-btn">Create new</a>
 {% endblock %}
