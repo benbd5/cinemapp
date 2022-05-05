@@ -3,9 +3,10 @@
 {% block title %}New Actors{% endblock %}
 
 {% block body %}
-    <h1>Create new Actors</h1>
-
+    <div class="d-flex justify-content-center">
+        <h1>Ajouter un nouvel acteur</h1>
+    </div>
     {{ include('actors/_form.html.twig') }}
 
-    <a href="{{ path('app_actors_index') }}">back to list</a>
+    <a href="{{ path('app_actors_index') }}">Retour à la liste</a>
 {% endblock %}

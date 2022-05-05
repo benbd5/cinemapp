@@ -87,6 +87,7 @@ class MoviesController extends AbstractController
      */
     public function edit(Request $request, Movies $movie, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(MoviesType::class, $movie);
         $form->handleRequest($request);
 
@@ -107,6 +108,7 @@ class MoviesController extends AbstractController
      */
     public function delete(Request $request, Movies $movie, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if ($this->isCsrfTokenValid('delete'.$movie->getId(), $request->request->get('_token'))) {
             $entityManager->remove($movie);
             $entityManager->flush();

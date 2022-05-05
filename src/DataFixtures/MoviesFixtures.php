@@ -5,9 +5,13 @@ namespace App\DataFixtures;
 use App\Entity\Movies;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Exception;
 
 class MoviesFixtures extends Fixture
 {
+    /**
+     * @throws Exception
+     */
     public function load(ObjectManager $manager): void
     {
         // create 20 movies

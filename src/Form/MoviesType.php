@@ -16,15 +16,34 @@ class MoviesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', null, [
+                'label' => 'Nom du film',
+                'attr' => [
+                    'placeholder' => 'Nom du film',
+                ],
+            ])
             ->add('releaseDate',DateType::Class, array(
                 'widget' => 'choice',
                 'years' => range(date('Y'), date('Y')-100),
                 'months' => range(1, 12),
                 'days' => range(1, 31),
+                'label' => 'Date de sortie',
+                'attr' => [
+                    'placeholder' => 'Date de sortie',
+                ],
             ))
-            ->add('synopsis')
-            ->add('duration')
+            ->add('synopsis', null, [
+                'label' => 'Synopsis',
+                'attr' => [
+                    'placeholder' => 'Synopsis',
+                ],
+            ])
+            ->add('duration', null, [
+                'label' => 'Durée',
+                'attr' => [
+                    'placeholder' => 'Durée',
+                ],
+            ])
             ->add('picture', FileType::class, [
                 'label' => 'Image de couverture',
 
@@ -49,8 +68,18 @@ class MoviesType extends AbstractType
                     ])
                 ],
             ])
-            ->add('category')
-            ->add('actors')
+            ->add('category', null, [
+                'label' => 'Catégorie',
+                'attr' => [
+                    'placeholder' => 'Catégorie',
+                ],
+            ])
+            ->add('actors', null, [
+                'label' => 'Acteurs',
+                'attr' => [
+                    'placeholder' => 'Acteurs',
+                ],
+            ])
         ;
     }
 

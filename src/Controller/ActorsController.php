@@ -31,6 +31,7 @@ class ActorsController extends AbstractController
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $actor = new Actors();
         $form = $this->createForm(ActorsType::class, $actor);
         $form->handleRequest($request);
@@ -63,6 +64,7 @@ class ActorsController extends AbstractController
      */
     public function edit(Request $request, Actors $actor, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(ActorsType::class, $actor);
         $form->handleRequest($request);
 
@@ -83,6 +85,7 @@ class ActorsController extends AbstractController
      */
     public function delete(Request $request, Actors $actor, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if ($this->isCsrfTokenValid('delete'.$actor->getId(), $request->request->get('_token'))) {
             $entityManager->remove($actor);
             $entityManager->flush();

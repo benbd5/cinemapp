@@ -40,6 +40,8 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $user->setRoles(['ROLE_USER']);
+
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
@@ -48,7 +50,7 @@ class RegistrationController extends AbstractController
             $tokenStorage->setToken($token);
             $requestStack->getSession()->set('_security_main', serialize($token));
 
-           // return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_movies_index');
         }
 
         return $this->renderForm('registration/register.html.twig', [

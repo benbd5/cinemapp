@@ -4,7 +4,9 @@
 
 {% block body %}
 
-    <h1>{{ category.name }}</h1>
+    <div class="d-flex justify-content-center">
+        <h1 class="justify-content-center">{{ category.name }}</h1>
+    </div>
 
     <h2>Liste de films</h2>
 
@@ -16,9 +18,15 @@
         {% endfor %}
     </div>
 
-    <a href="{{ path('app_category_index') }}">back to list</a>
+    {% if category.getMovies().count() == 0 %}
+        <p>Aucun film</p>
+    {% endif %}
 
-    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
+    <a href="{{ path('app_category_index') }}" class="btn btn-primary">Retour à la liste</a>
 
-    {{ include('category/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_USER') %}
+        <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-warning">Modifier</a>
+
+        {{ include('category/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

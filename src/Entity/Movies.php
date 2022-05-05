@@ -56,6 +56,7 @@ class Movies
 
     /**
      * @ORM\OneToMany(targetEntity=Opinions::class, mappedBy="movies")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $opinion;
 

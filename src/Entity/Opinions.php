@@ -39,6 +39,7 @@ class Opinions
 
     /**
      * @ORM\ManyToOne(targetEntity=Movies::class, inversedBy="opinion")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $movies;
 
@@ -122,5 +123,9 @@ class Opinions
         $this->user = $user;
 
         return $this;
+    }
+
+    public function __toString() :string {
+        return $this->commentary;
     }
 }
