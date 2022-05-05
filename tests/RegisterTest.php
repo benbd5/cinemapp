@@ -27,7 +27,8 @@ class RegisterTest extends WebTestCase
         // On récupère le bouton login et on passe les informations du formulaire
         $form = $crawler->selectButton('Login')->form(['_username' => 'test@test.fr', '_password' => '123456']);
         $client->submit($form);
-        $client->followRedirect();
+        $client->followRedirects(true);
+        $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
     }
