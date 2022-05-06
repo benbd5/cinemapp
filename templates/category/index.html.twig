@@ -6,23 +6,25 @@
 {% block body %}
 	<h1 class="row d-flex justify-content-center mt-5">Les catégories</h1>
 
+	<div class="row g-2">
 	{% for category in categories %}
-		<div class="col-m" style="max-width: 200px">
-			<div class="card">
-				<div class="card-body">
-					<h5 class="card-title">{{ category.name }}</h5>
-					<a href="{{ path('app_category_show', {'id': category.id}) }}">Détails</a>
-					{% if is_granted('ROLE_ADMIN') %}
-						<a href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
-					{% endif %}
+			<div class="col-m" style="max-width: 200px">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">{{ category.name }}</h5>
+						<a href="{{ path('app_category_show', {'id': category.id}) }}">Détails</a>
+						{% if is_granted('ROLE_ADMIN') %}
+							<a href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
+						{% endif %}
+					</div>
 				</div>
 			</div>
-		</div>
-	{% else %}
-		<div>
-			<p>no records found</p>
-		</div>
-	{% endfor %}
+		{% else %}
+			<div>
+				<p>no records found</p>
+			</div>
+		{% endfor %}
+	</div>
 
 	<a href="{{ path('app_category_new') }}" class="color-btn">Ajouter</a>
 {% endblock %}

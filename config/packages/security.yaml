@@ -38,19 +38,19 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/profile, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
-         - { path: ^/profile/edit, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
-         - {path: ^/movies/new, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
-         - {path: ^/movies/edit, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
-         - {path: ^/movies/delete, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
+         - { path: ^/profile/edit, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+         - {path: ^/movies/new, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN]}
+         - {path: ^/movies/edit, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN]}
+         - {path: ^/movies/delete, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN]}
          - {path: ^/opinions/new, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
          - {path: ^/opinions/edit, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
          - {path: ^/opinions/delete, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
-         - {path: ^/actors/new, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
-         - {path: ^/actors/edit, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
-         - {path: ^/actors/delete, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
-         - {path: ^/category/new, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
-         - {path: ^/category/edit, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
-         - {path: ^/category/delete, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER]}
+         - {path: ^/actors/new, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN]}
+         - {path: ^/actors/edit, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN]}
+         - {path: ^/actors/delete, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN]}
+         - {path: ^/category/new, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN]}
+         - {path: ^/category/edit, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN]}
+         - {path: ^/category/delete, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN]}
 
 when@test:
     security:

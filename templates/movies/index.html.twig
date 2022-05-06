@@ -6,6 +6,10 @@
 {% block body %}
 	<h1 class="row d-flex justify-content-center mt-5">Tous les films</h1>
 
+{#	<div class="row d-flex  ">#}
+		<a href="{{ path('app_movies_new') }}" class="btn btn-primary mb-2">Ajouter</a>
+{#	</div>#}
+
 	<div class="row g-2">
 		{% for movie in movies %}
 			<div class="col-m" style="max-width: 200px">
@@ -15,7 +19,6 @@
 						<h5 class="card-title">{{ movie.name }}</h5>
 						<h5 class="card-text">{{ movie.releaseDate ? movie.releaseDate|date('Y-m-d') : '' }}</h5>
 						<p class="card-text">{{ movie.synopsis }}</p>
-						<p class="card-text">{{ movie.duration }}h</p>
 						<p class="card-text">{{ movie.duration }}h</p>
 						<a href="{{ path('app_movies_show', {'id': movie.id}) }}">Détails</a>
 						{% if is_granted('ROLE_ADMIN') %}
@@ -30,6 +33,4 @@
 			</div>
 		{% endfor %}
 	</div>
-
-	<a href="{{ path('app_movies_new') }}" class="color-btn">Ajouter</a>
 {% endblock %}
